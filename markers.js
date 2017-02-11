@@ -1,0 +1,1 @@
+var markers = [{lat:1, lng:1},{lat:2, lng:2},{lat:3, lng:4}];

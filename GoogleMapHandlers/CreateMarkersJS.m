@@ -1,8 +1,12 @@
+% Function create markers.js file which is used within GoogleMapPloter.html
+% as source of markers coordinates
+
 function CreateMarkersJS( coordinates )
-%   coordinates=[[lat,lng];[lat,lng];[lat,lng]]
+% coordinates=[[lat,lng];[lat,lng];[lat,lng]]
 
 
 %var markers = [{lat: 37.769, lng: -122.446},{lat: 58.769, lng: -142.446}];
+
 markers='var markers = [';
 for i=1:length(coordinates)
     

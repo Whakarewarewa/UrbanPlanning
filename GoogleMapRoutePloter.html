@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #map {
+        height: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+	<script src="markers.js"></script>
+	<script>
+
+      var map;
+
+
+      function initMap() {
+        var Kyiv = {lat: 50.4501, lng: 30.5234};
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 12,
+          center: Kyiv,
+          mapTypeId: 'roadmap'
+        });
+
+		 for (var i = 0; i < markers.length; i++) {
+		 
+			 var marker = new google.maps.Marker({
+			  position: markers[i],
+			  map: map
+			});
+          marker.setMap(map);
+        }
+        
+	var rendererOptions={map:map};
+	directionsDisplay=new google.maps.DirectionsRenderer(rendererOptions);
+	var point1=new google.maps.LatLng(-33.8975098545041,151.09962701797485);
+	var point2=new google.maps.LatLng(-33.8584421519279,151.0693073272705);
+	var point3=new google.maps.LatLng(-33.87312358690301,151.99952697753906);
+	var point4=new google.maps.LatLng(-33.84525521656404,151.0421848297119);
+    
+	var wps=[{location:point1},{location:point2},{location:point4}];
+	var org=new google.maps.LatLng(-33.89192157947345,151.13604068756104);
+	var dest=new google.maps.LatLng(-33.69727974097957,150.29047966003418);
+	var request={origin:org,destination:org,waypoints:wps,travelMode:google.maps.DirectionsTravelMode.WALKING};
+	directionsService=new google.maps.DirectionsService();
+	directionsService.route(request,function(response,status){
+		if(status==google.maps.DirectionsStatus.OK){
+			directionsDisplay.setDirections(response);
+		}
+		else
+		alert('failed to get directions');
+
+      });
+
+}
+ 
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?callback=initMap">
+    </script>
+  </body>
+</html>

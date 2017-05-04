@@ -1,22 +1,24 @@
-API_KEY='....';
+API_KEY='...';
 
-% array of addresses
-% places_of_interest = 
+n=4;
 
+places_of_interest=cell(n,1);    
+coordinates=cell(n,1);
 
-
-% array of addresses coordinates
-% coordinates = 
-
-
-coordinates1=GoogleAddressToGeocode('Kyiv, KPI',API_KEY);
-coordinates2=GoogleAddressToGeocode('Kyiv, Teatralna',API_KEY);
-
-
-coordinates={coordinates1 coordinates2};
+for i=1:n
+    places_of_interest{i}=input('Enter address please: ','s');
+    
+    coordinates{i}=GoogleAddressToGeocode(places_of_interest{i},API_KEY);
+end
 
 
-C=CreateMatrixC(coordinates, API_KEY)
+CreateMarkersJS(coordinates);
+
+web('GoogleMapPloter.html')
+
+
+
+C=CreateMatrixC(coordinates, API_KEY);
 
 
 
